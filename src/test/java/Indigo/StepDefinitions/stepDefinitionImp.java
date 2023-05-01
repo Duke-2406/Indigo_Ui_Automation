@@ -68,26 +68,32 @@ public class stepDefinitionImp extends BaseTest {
         confirmationPage.confirmPage();
     }
 
+    @Then("I confirm my flight with seat")
+    public void i_confirm_my_flight_with_seat(){
+        ConfirmationPage confirmationPage = new ConfirmationPage(driver);
+        confirmationPage.seatSelect();
+    }
+
+//    @After
+//    public void AfterScenario()
+//    {
+//        System.out.println("browser close");
+//        driver.quit();
+//    }
+
     @After
-    public void AfterScenario()
+    public void AddScreenshot(Scenario scenario) throws IOException
     {
+        System.out.println("take screenshot");
+        if(scenario.isFailed())
+        {
+            //screenshot
+            File sourcePath= 	((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            byte[] fileContent = FileUtils.readFileToByteArray(sourcePath);
+            scenario.attach(fileContent, "image/png", "image");
+
+        }
         System.out.println("browser close");
         driver.quit();
     }
-
-//    @AfterStep
-//    public void AddScreenshot(Scenario scenario) throws IOException
-//    {
-//        System.out.println("take screenshot");
-//        if(scenario.isFailed())
-//        {
-//            //screenshot
-//
-//            File sourcePath= 	((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//            byte[] fileContent = FileUtils.readFileToByteArray(sourcePath);
-//            scenario.attach(fileContent, "image/png", "image");
-//
-//        }
-//
-//    }
 }
