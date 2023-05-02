@@ -32,17 +32,17 @@ public class LandingPage extends abstractComponent {
     WebElement searchFlightButton;
 
     public void goTo(){
-        driver.get("https://aem-prod-skyplus6e.goindigo.in/");
+        driver.get("https://aem-preprod-skyplus6e.goindigo.in/");
     }
 
-    public void searchFlight(){
+    public void searchFlight(String pickUpLoc, String dropOfLoc){
         fromInput.click();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        fromInput.sendKeys("Delhi(Del)");
+        fromInput.sendKeys(pickUpLoc);
         fromInput.click();
         fromInput.clear();
         try {
@@ -52,7 +52,7 @@ public class LandingPage extends abstractComponent {
         }
         fromInput.click();
         fromInput.sendKeys(Keys.CONTROL,"a",Keys.DELETE);
-        fromInput.sendKeys("Delhi(Del)");
+        fromInput.sendKeys(pickUpLoc);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -60,7 +60,7 @@ public class LandingPage extends abstractComponent {
         }
         toInput.click();
         toInput.clear();
-        toInput.sendKeys("Jaipur");
+        toInput.sendKeys(dropOfLoc);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -82,14 +82,14 @@ public class LandingPage extends abstractComponent {
         searchFlightButton.click();
     }
 
-    public void searchFlightRoundTrip(){
+    public void searchFlightRoundTrip(String pickUpLoc, String dropOfLoc){
         fromInput.click();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        fromInput.sendKeys("Delhi(Del)");
+        fromInput.sendKeys(pickUpLoc);
         fromInput.click();
         fromInput.clear();
         try {
@@ -99,7 +99,7 @@ public class LandingPage extends abstractComponent {
         }
         fromInput.click();
         fromInput.sendKeys(Keys.CONTROL,"a",Keys.DELETE);
-        fromInput.sendKeys("Delhi(Del)");
+        fromInput.sendKeys(pickUpLoc);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -107,7 +107,7 @@ public class LandingPage extends abstractComponent {
         }
         toInput.click();
         toInput.clear();
-        toInput.sendKeys("Jaipur");
+        toInput.sendKeys(dropOfLoc);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

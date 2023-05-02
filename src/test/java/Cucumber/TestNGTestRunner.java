@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
         features = "src/test/java/Cucumber",
         glue = "Indigo.StepDefinitions",
         monochrome = true,
-        tags = "@seatBook",
+        tags = "@TC_08",
         plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 )
 public class TestNGTestRunner extends AbstractTestNGCucumberTests {

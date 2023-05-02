@@ -29,10 +29,6 @@ public class ConfirmationPage extends abstractComponent {
     @FindBy(xpath = "//input[@type='checkbox']")
     WebElement checkBox;
 
-//    @FindBy(xpath = ".//div[@data-designator='1A']/button")
-//    WebElement seatNumber;
-
-
     public List<WebElement> getDynamicSeat(String SystemName){
         return driver.findElements(By.xpath("//div[contains(@class,'open') and @data-designator='"+SystemName+"']//button"));
     }
@@ -75,14 +71,58 @@ public class ConfirmationPage extends abstractComponent {
             throw new RuntimeException(e);
         }
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        char[] row = {'A','B','C','D','E','F'};
-        for(int i=1;i<=30;i++){
+        String[] row = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","26","27","28","29","30"};
+        String[] col = {"A","B","C","D","E","F"};
+        for(String r : row){
             int j = 0;
-            for( char c:row){
+            for(String c : col){
                 j=0;
-                char ch=(char)(i+'0');
-                System.out.println(ch);
-                String str = String.valueOf(ch) + c;
+                System.out.println(r);
+                String str = r + c;
+                System.out.println(str);
+                if(getDynamicSeat(str).size() == 1) {
+                    System.out.println("you can click on seat");
+                    WebElement element = getDynamicSeat(str).get(0);
+                    js.executeScript("arguments[0].scrollIntoView();", element);
+                    js.executeScript("arguments[0].click();", element);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    okBtn.click();
+                    j=1;
+                    break;
+                }
+            }
+            if(j==1){break;}
+        }
+        js.executeScript("arguments[0].scrollIntoView();", continueToPayment);
+        js.executeScript("arguments[0].click();", continueToPayment);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        String title = driver.getTitle();
+        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
+    }
+
+    public void inboundSeatSelect(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String[] row = {"12","13","14","15","16","17","18","19","20","21","22","23","24","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56"};
+        String[] col = {"A","B","C","D","E","F","G","H","I"};
+        for(String r : row){
+            int j = 0;
+            for( String c:col){
+                j=0;
+                System.out.println(r);
+                String str = r+c;
                 System.out.println(str);
                 if(getDynamicSeat(str).size() == 1) {
                     System.out.println("you can click on seat");

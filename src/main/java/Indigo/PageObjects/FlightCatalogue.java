@@ -34,6 +34,11 @@ public class FlightCatalogue extends abstractComponent {
     @FindBy(xpath = "(//h3[contains(text(),'Saver')])[1]/parent::div/parent::div/parent::div//span[contains(text(),'Book')]")
     WebElement bookButton;
 
+    @FindBy(xpath = "(//h3[contains(text(),'Flexi')])[1]/parent::div/parent::div/parent::div//span[contains(text(),'Book')]")
+    WebElement flexiBookButton;
+
+    @FindBy(xpath = "(//h3[contains(text(),'Super')])[1]/parent::div/parent::div/parent::div//span[contains(text(),'Book')]")
+    WebElement superBookButton;
     @FindBy(xpath = "(//p[contains(text(),'Departing flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div)[1]//h3[contains(text(),'Saver')]/parent::div/parent::div/following-sibling::button//span[contains(text(),'Book')]")
     WebElement departingFlightBookButton;
 
@@ -70,6 +75,40 @@ public class FlightCatalogue extends abstractComponent {
         }
         waitForWebElementToAppear(bookButton);
         bookButton.click();
+    }
+
+    public void selectFlexiFlight(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(numbersOfFlight.size()==0){
+            Assert.assertTrue(false);
+
+        }
+        else {
+            numbersOfFlight.get(0).click();
+        }
+        waitForWebElementToAppear(flexiBookButton);
+        flexiBookButton.click();
+    }
+
+    public void selectSuperFlight(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(numbersOfFlight.size()==0){
+            Assert.assertTrue(false);
+
+        }
+        else {
+            numbersOfFlight.get(0).click();
+        }
+        waitForWebElementToAppear(superBookButton);
+        superBookButton.click();
     }
 
     public void seleceBothFlight(){
@@ -133,5 +172,31 @@ public class FlightCatalogue extends abstractComponent {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void popupForPhoneNumberAndEmailIDFlexi(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(mobileNumberInput);
+        mobileNumberInput.sendKeys("1234567890");
+        emailIDInput.sendKeys("test@gmail.com");
+        waitForWebElementToClickable(nextBtn);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", nextBtn);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void inboundPopupForPhoneNumberAndEmailID(){
+        waitForWebElementToClickable(mobileNumberInput);
+        mobileNumberInput.sendKeys("1234567890");
+        emailIDInput.sendKeys("test@gmail.com");
+        waitForWebElementToClickable(nextBtn);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", nextBtn);
     }
 }
