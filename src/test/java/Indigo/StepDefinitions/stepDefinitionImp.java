@@ -28,18 +28,18 @@ public class stepDefinitionImp extends BaseTest {
         driver = initializeDriver();
     }
 
-    @Given("I landed on Home Page")
-    public void I_landed_on_home_Page() throws IOException{
+    @Given("^I landed on Home Page and search for (.+) and (.+)$")
+    public void I_landed_on_home_Page(String pickUpLoc, String dropOfLoc) throws IOException{
         LandingPage landingPage = new LandingPage(driver);
         landingPage.goTo();
-        landingPage.searchFlight();
+        landingPage.searchFlight(pickUpLoc, dropOfLoc);
     }
 
-    @Given("I landed on Home Page and search for round trip")
-    public void i_lander_on_home_page_and_search_for_round_trip(){
+    @Given("^I landed on Home Page and search for round trip and search for (.+) and (.+)$")
+    public void i_lander_on_home_page_and_search_for_round_trip(String pickUpLoc, String dropOfLoc){
         LandingPage landingPage = new LandingPage(driver);
         landingPage.goTo();
-        landingPage.searchFlightRoundTrip();
+        landingPage.searchFlightRoundTrip(pickUpLoc, dropOfLoc);
     }
 
     @Then("I select My Flight")
@@ -47,6 +47,13 @@ public class stepDefinitionImp extends BaseTest {
         FlightCatalogue flightCatalogue = new FlightCatalogue(driver);
         flightCatalogue.selectFlight();
         flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for Inbound")
+    public void i_select_my_flight_for_inbound(){
+        FlightCatalogue flightCatalogue = new FlightCatalogue(driver);
+        flightCatalogue.selectFlight();
+        flightCatalogue.inboundPopupForPhoneNumberAndEmailID();
     }
 
     @Then("I select My Flight for Round Trip")
@@ -62,6 +69,12 @@ public class stepDefinitionImp extends BaseTest {
         passengerDetails.fillPassengerDetails();
     }
 
+    @Then("I fill passenger details for Inbound")
+    public void i_fill_passenger_details_for_inbound(){
+        PassengerDetails passengerDetails = new PassengerDetails(driver);
+        passengerDetails.inboundFillPassengerDetails();
+    }
+
     @Then("I confirm my flight")
     public void i_confirm_my_flight(){
         ConfirmationPage confirmationPage = new ConfirmationPage(driver);
@@ -72,6 +85,12 @@ public class stepDefinitionImp extends BaseTest {
     public void i_confirm_my_flight_with_seat(){
         ConfirmationPage confirmationPage = new ConfirmationPage(driver);
         confirmationPage.seatSelect();
+    }
+
+    @Then("I confirm my flight with seat for Inbound")
+    public void i_confirm_my_flight_with_seat_for_inbound(){
+        ConfirmationPage confirmationPage = new ConfirmationPage(driver);
+        confirmationPage.inboundSeatSelect();
     }
 
 //    @After

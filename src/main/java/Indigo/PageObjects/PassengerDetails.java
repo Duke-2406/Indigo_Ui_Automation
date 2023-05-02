@@ -65,4 +65,28 @@ public class PassengerDetails extends abstractComponent {
         }
     }
 
+    public void inboundFillPassengerDetails(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(radioBtn);
+        radioBtn.click();
+        waitForWebElementToClickable(firstName);
+        firstName.sendKeys("Test");
+        waitForWebElementToClickable(lastName);
+        lastName.sendKeys("User");
+        waitForWebElementToClickable(continueBtn);
+        continueBtn.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
+        js.executeScript("arguments[0].click();", continueSeatBtn);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

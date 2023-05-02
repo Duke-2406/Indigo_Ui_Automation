@@ -134,4 +134,12 @@ public class FlightCatalogue extends abstractComponent {
             throw new RuntimeException(e);
         }
     }
+
+    public void inboundPopupForPhoneNumberAndEmailID(){
+        waitForWebElementToClickable(mobileNumberInput);
+        mobileNumberInput.sendKeys("1234567890");
+        emailIDInput.sendKeys("test@gmail.com");
+        waitForWebElementToClickable(nextBtn);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", nextBtn);
+    }
 }

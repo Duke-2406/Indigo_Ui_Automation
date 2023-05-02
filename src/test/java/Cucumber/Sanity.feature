@@ -1,23 +1,56 @@
 Feature: Sanity Suite
 
-  @Sanity
-  Scenario: Book Flight Tickets for One Way Trip
-    Given I landed on Home Page
+  @Sanity @TC_01
+  Scenario Outline: Book Flight Tickets for One Way Trip
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight
     Then I fill passenger details
     Then I confirm my flight
 
-  @Sanity @seatBook
-  Scenario: Book Flight Tickets for One Way Trip
-    Given I landed on Home Page
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |Jaipur(JAI)|
+
+  @Sanity @TC_02
+  Scenario Outline: Book Flight Tickets for One Way Trip
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight
     Then I fill passenger details
     Then I confirm my flight with seat
 
-  @Sanity
-  Scenario: Book Flight Tickets for Round Trip
-    Given I landed on Home Page and search for round trip
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |Jaipur(JAI)|
+
+  @Sanity @TC_03
+  Scenario Outline: Inbound Book Flight Tickets for One Way Trip
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
+    Then I select My Flight for Inbound
+    Then I fill passenger details for Inbound
+    Then I confirm my flight
+
+    Examples:
+    |Pick Up Loc|Drop Off Loc|
+    |Delhi(DEL) |London Heathrow(LHR)|
+
+  @Sanity @TC_04
+  Scenario Outline: Inbound Book Flight Tickets for One Way Trip with seat
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
+    Then I select My Flight for Inbound
+    Then I fill passenger details for Inbound
+    Then I confirm my flight with seat for Inbound
+
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |London Heathrow(LHR)|
+
+  @Sanity @roundTrip
+  Scenario Outline: Book Flight Tickets for Round Trip
+    Given I landed on Home Page and search for round trip and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight for Round Trip
     Then I fill passenger details
     Then I confirm my flight
 
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |Jaipur(JAI)|
