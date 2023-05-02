@@ -32,7 +32,7 @@ public class LandingPage extends abstractComponent {
     WebElement searchFlightButton;
 
     public void goTo(){
-        driver.get("https://aem-qa-skyplus6e.goindigo.in/");
+        driver.get("https://aem-preprod-skyplus6e.goindigo.in/");
     }
 
     public void searchFlight(String pickUpLoc, String dropOfLoc){
