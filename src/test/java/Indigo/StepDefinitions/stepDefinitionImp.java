@@ -78,6 +78,62 @@ public class stepDefinitionImp extends BaseTest {
         flightCatalogue.popupForPhoneNumberAndEmailID();
     }
 
+    @Then("I select My Flight with infant child")
+    public void i_select_my_flight_with_infant_child(){
+        flightCatalogue.selectInfant();
+        flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight with senior citizen")
+    public void i_select_my_flight_with_senior_citizen(){
+        flightCatalogue.selectSeniorCitizen();
+        flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight with multiple passenger")
+    public void i_select_my_flight_with_multiple_passenger(){
+        flightCatalogue.selectMultiplePassenger();
+        flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for student")
+    public void i_select_my_flight_for_student(){
+        flightCatalogue.selectStudent();
+        flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for Doctor and Nurse")
+    public void i_select_my_flight_for_doctor_nurse(){
+        flightCatalogue.selectDoctorAndNurse();
+        flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for Armed Forces")
+    public void i_select_my_flight_for_armed_forces(){
+        flightCatalogue.selectArmedForces();
+        flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for Family and Friends")
+    public void i_select_my_flight_for_family_friends(){
+        flightCatalogue.selectFamilyFriends();
+        flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for Vacinated")
+    public void i_select_my_flight_for_vacinated(){
+        flightCatalogue.selectVacinated();
+        flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
     @Then("I fill passenger details")
     public void i_fill_passenger_details(){
         passengerDetails.fillPassengerDetails();
