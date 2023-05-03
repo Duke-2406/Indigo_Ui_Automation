@@ -32,7 +32,7 @@ public class LandingPage extends abstractComponent {
     WebElement searchFlightButton;
 
     public void goTo(){
-        driver.get("https://aem-preprod-skyplus6e.goindigo.in/");
+        driver.get("https://aem-prod-skyplus6e.goindigo.in/");
     }
 
     public void searchFlight(String pickUpLoc, String dropOfLoc){
@@ -73,7 +73,7 @@ public class LandingPage extends abstractComponent {
             throw new RuntimeException(e);
         }
         dateInput.sendKeys(Keys.CONTROL,"a",Keys.DELETE);
-        dateInput.sendKeys("10 May 2023");
+        dateInput.sendKeys("15 Jun 2023");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -120,7 +120,7 @@ public class LandingPage extends abstractComponent {
             throw new RuntimeException(e);
         }
         dateInput.sendKeys(Keys.CONTROL,"a",Keys.DELETE);
-        dateInput.sendKeys("10 May 2023");
+        dateInput.sendKeys("15 Jun 2023");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -132,7 +132,7 @@ public class LandingPage extends abstractComponent {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        returnDateInput.sendKeys("16 May 2023");
+        returnDateInput.sendKeys("21 Jun 2023");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

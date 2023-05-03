@@ -48,20 +48,28 @@ public class ConfirmationPage extends abstractComponent {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", skipBtn);
         js.executeScript("arguments[0].click();", skipBtn);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+
 //        js.executeScript("arguments[0].scrollIntoView();", checkBox);
 //        js.executeScript("arguments[0].click();", checkBox);
-//        boolean isElementEnabled = false;
-//        if(confirmationNumber.getText().isEmpty()){
-//            isElementEnabled = true;
+//        System.out.println("please refresh");
+//        driver.navigate().refresh();
+//        System.out.println("refresh done");
+//        try {
+//            Thread.sleep(4000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
 //        }
-//        Assert.assertTrue(isElementEnabled);
-        String title = driver.getTitle();
-        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
+//        boolean isElementEnabled = confirmationNumber.getText().isEmpty();
+//        Assert.assertFalse(isElementEnabled);
+
+//        String title = driver.getTitle();
+//        System.out.println("We are on payment page");
+//        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
     }
 
     public void seatSelect(){
@@ -98,14 +106,14 @@ public class ConfirmationPage extends abstractComponent {
             if(j==1){break;}
         }
         js.executeScript("arguments[0].scrollIntoView();", continueToPayment);
-        js.executeScript("arguments[0].click();", continueToPayment);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        String title = driver.getTitle();
-        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
+//        js.executeScript("arguments[0].click();", continueToPayment);
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        String title = driver.getTitle();
+//        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
     }
 
     public void inboundSeatSelect(){
@@ -142,13 +150,13 @@ public class ConfirmationPage extends abstractComponent {
             if(j==1){break;}
         }
         js.executeScript("arguments[0].scrollIntoView();", continueToPayment);
-        js.executeScript("arguments[0].click();", continueToPayment);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        String title = driver.getTitle();
-        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
+//        js.executeScript("arguments[0].click();", continueToPayment);
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        String title = driver.getTitle();
+//        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
     }
 }

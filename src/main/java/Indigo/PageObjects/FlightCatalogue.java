@@ -60,6 +60,42 @@ public class FlightCatalogue extends abstractComponent {
     @FindBy(xpath = "//span[contains(text(),'Next')]")
     WebElement nextBtn;
 
+    @FindBy(xpath = ".//span[contains(text(),'Special fares')]/parent::button/parent::div/parent::div/preceding-sibling::div[contains(@class,'paxType')]/div/div/button")
+    WebElement passengerDropdown;
+
+    @FindBy(xpath = ".//div[contains(@class,'pax-selection')]/div[contains(@class,'pax-dropdown')]/div[5]//button[contains(@class,'plus')]")
+    WebElement infantPlusBtn;
+
+    @FindBy(xpath = ".//div[contains(@class,'pax-selection')]/div[contains(@class,'pax-dropdown')]/div[3]//button[contains(@class,'plus')]")
+    WebElement seniorCitizen;
+
+    @FindBy(xpath = ".//div[contains(@class,'pax-selection')]/div[contains(@class,'pax-dropdown')]/div[2]//button[contains(@class,'plus')]")
+    WebElement multiplePassenger;
+
+    @FindBy(xpath = ".//span[contains(text(),'Done')]")
+    WebElement doneBtn;
+
+    @FindBy(xpath = "//span[contains(text(),'Ok')]")
+    WebElement okBtn;
+
+    @FindBy(xpath = "//span[contains(text(),'Special fares')]/parent::button")
+    WebElement specialFare;
+
+    @FindBy(xpath = "//li[@data-value='STU']//span[contains(text(),'Students')]")
+    WebElement student;
+
+    @FindBy(xpath = "//li[@data-value='MEDICAL']//span[contains(text(),'Doctors & Nurses')]")
+    WebElement doctorAndNurse;
+
+    @FindBy(xpath = "//li[@data-value='DFN']//span[contains(text(),'Armed Forces')]")
+    WebElement armedForces;
+
+    @FindBy(xpath = "//li[@data-value='FNF']//span[contains(text(),'Family & Friends')]")
+    WebElement familyAndFriends;
+
+    @FindBy(xpath = "//li[@data-value='VAXI']//span[contains(text(),'Vaccinated')]")
+    WebElement vacinated;
+
     public void selectFlight(){
         try {
             Thread.sleep(5000);
@@ -198,5 +234,87 @@ public class FlightCatalogue extends abstractComponent {
         emailIDInput.sendKeys("test@gmail.com");
         waitForWebElementToClickable(nextBtn);
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", nextBtn);
+    }
+
+    public void selectInfant(){
+        waitForWebElementToClickable(passengerDropdown);
+        passengerDropdown.click();
+        waitForWebElementToClickable(infantPlusBtn);
+        infantPlusBtn.click();
+        waitForWebElementToClickable(doneBtn);
+        doneBtn.click();
+    }
+
+    public void selectSeniorCitizen(){
+        waitForWebElementToClickable(passengerDropdown);
+        passengerDropdown.click();
+        waitForWebElementToClickable(seniorCitizen);
+        seniorCitizen.click();
+//        waitForWebElementToClickable(doneBtn);
+//        doneBtn.click();
+        waitForWebElementToClickable(okBtn);
+        okBtn.click();
+    }
+
+    public void selectMultiplePassenger(){
+        waitForWebElementToClickable(passengerDropdown);
+        passengerDropdown.click();
+        waitForWebElementToClickable(multiplePassenger);
+        multiplePassenger.click();
+        multiplePassenger.click();
+        waitForWebElementToClickable(doneBtn);
+        doneBtn.click();
+//        waitForWebElementToClickable(okBtn);
+//        okBtn.click();
+    }
+
+    public void selectStudent(){
+        waitForWebElementToClickable(specialFare);
+        specialFare.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", student);
+        js.executeScript("arguments[0].click();", student);
+        waitForWebElementToClickable(okBtn);
+        okBtn.click();
+    }
+
+    public void selectDoctorAndNurse(){
+        waitForWebElementToClickable(specialFare);
+        specialFare.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", doctorAndNurse);
+        js.executeScript("arguments[0].click();", doctorAndNurse);
+        waitForWebElementToClickable(okBtn);
+        okBtn.click();
+    }
+
+    public void selectArmedForces(){
+        waitForWebElementToClickable(specialFare);
+        specialFare.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", armedForces);
+        js.executeScript("arguments[0].click();", armedForces);
+        waitForWebElementToClickable(okBtn);
+        okBtn.click();
+    }
+
+    public void selectFamilyFriends(){
+        waitForWebElementToClickable(specialFare);
+        specialFare.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", familyAndFriends);
+        js.executeScript("arguments[0].click();", familyAndFriends);
+//        waitForWebElementToClickable(okBtn);
+//        okBtn.click();
+    }
+
+    public void selectVacinated(){
+        waitForWebElementToClickable(specialFare);
+        specialFare.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", vacinated);
+        js.executeScript("arguments[0].click();", vacinated);
+        waitForWebElementToClickable(okBtn);
+        okBtn.click();
     }
 }
