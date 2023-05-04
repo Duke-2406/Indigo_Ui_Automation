@@ -176,10 +176,75 @@ Feature: Sanity Suite
       |Pick Up Loc|Drop Off Loc|
       |Delhi(DEL) |Jaipur(JAI)|
 
+  @Sanity @TC_17 @test2
+  Scenario Outline: Book Flight Tickets for One Way Trip with single meal(Payment not included)
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
+    Then I select My Flight
+    Then I fill passenger details and add single meal
+    Then I confirm my flight
+
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |Jaipur(JAI)|
+
+  @Sanity @TC_18 @test1
+  Scenario Outline: Book Flight Tickets for One Way Trip with double meal(Payment not included)
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
+    Then I select My Flight
+    Then I fill passenger details and add double meal
+    Then I confirm my flight
+
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |Jaipur(JAI)|
+
+  @Sanity @TC_19
+  Scenario Outline: Book Flight Tickets for One Way Trip with double meal(Payment not included)
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
+    Then I select My Flight
+    Then I fill passenger details and add prime addon
+    Then I confirm my flight with seat
+
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |Jaipur(JAI)|
+
+  @Sanity @TC_20
+  Scenario Outline: Book Flight Tickets for One Way Trip (Payment not included)
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
+    Then I select My Connecting Flight
+    Then I fill passenger details
+    Then I confirm my flight
+
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |Bengaluru(BLR)|
+
+  @Sanity @TC_21
+  Scenario Outline: Book Flight Tickets for One Way Trip (Payment not included)
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
+    Then I select My Connecting Flight
+    Then I fill passenger details
+    Then I confirm my flight with seat for 1 sector
+
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |Bengaluru(BLR)|
+
+  @Sanity @TC_22
+  Scenario Outline: Book Flight Tickets for One Way Trip (Payment not included)
+    Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
+    Then I select My Connecting Flight
+    Then I fill passenger details
+    Then I confirm my flight with seat for both sector
+
+    Examples:
+      |Pick Up Loc|Drop Off Loc|
+      |Delhi(DEL) |Bengaluru(BLR)|
 
   @Sanity @roundTrip
   Scenario Outline: Book Flight Tickets for Round Trip (Payment not included)
-    Given I landed on Home Page and search for round trip and search for <Pick Up Loc> and <Drop Off Loc>
+    Given I redirect on Home Page and search for round trip and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight for Round Trip
     Then I fill passenger details
     Then I confirm my flight

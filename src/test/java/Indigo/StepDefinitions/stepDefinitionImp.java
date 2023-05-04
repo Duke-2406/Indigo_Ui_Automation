@@ -42,8 +42,8 @@ public class stepDefinitionImp extends BaseTest {
         landingPage.searchFlight(pickUpLoc, dropOfLoc);
     }
 
-    @Given("^I landed on Home Page and search for round trip and search for (.+) and (.+)$")
-    public void i_lander_on_home_page_and_search_for_round_trip(String pickUpLoc, String dropOfLoc){
+    @Given("^I redirect on Home Page and search for round trip and search for (.+) and (.+)$")
+    public void i_redirect_on_home_page_and_search_for_round_trip_and_search_for (String pickUpLoc, String dropOfLoc){
         landingPage.goTo();
         landingPage.searchFlightRoundTrip(pickUpLoc, dropOfLoc);
     }
@@ -51,6 +51,12 @@ public class stepDefinitionImp extends BaseTest {
     @Then("I select My Flight")
     public void i_select_my_flight(){
         flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Connecting Flight")
+    public void i_select_my_connecting_flight(){
+        flightCatalogue.selectConnectingFlight();
         flightCatalogue.popupForPhoneNumberAndEmailID();
     }
 
@@ -139,6 +145,23 @@ public class stepDefinitionImp extends BaseTest {
         passengerDetails.fillPassengerDetails();
     }
 
+    @Then("I fill passenger details and add single meal")
+    public void i_fill_passenger_details_add_single_meal(){
+        passengerDetails.fillPassengerDetailsSingleMeal();
+    }
+
+    @Then("I fill passenger details and add double meal")
+    public void i_fill_passenger_details_add_double_meal(){
+        passengerDetails.fillPassengerDetailsDoubleMeal();
+    }
+
+    @Then("I fill passenger details and add prime addon")
+    public void i_fill_passenger_details_add_prime_addon(){
+        passengerDetails.fillPassengerDetailsWithPrime();
+        passengerDetails.informationPopUp();
+    }
+
+
     @Then("I fill passenger details for flexi")
     public void i_fill_passenger_details_for_flexi(){
         passengerDetails.fillFlexiPassengerDetails();
@@ -174,6 +197,16 @@ public class stepDefinitionImp extends BaseTest {
     @Then("I confirm my flight with seat for Inbound")
     public void i_confirm_my_flight_with_seat_for_inbound(){
         confirmationPage.inboundSeatSelect();
+    }
+
+    @Then("I confirm my flight with seat for 1 sector")
+    public void i_confirm_my_flight_with_seat_for_one_sector(){
+        confirmationPage.seatSelect();
+    }
+
+    @Then("I confirm my flight with seat for both sector")
+    public void i_confirm_my_flight_with_seat_for_both_sector(){
+        confirmationPage.seatSelectBothSector();
     }
 
 //    @After

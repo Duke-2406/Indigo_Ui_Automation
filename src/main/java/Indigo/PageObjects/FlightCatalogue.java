@@ -25,6 +25,9 @@ public class FlightCatalogue extends abstractComponent {
     @FindBy(xpath=".//div[@class='fare-accordion']")
     List<WebElement> numbersOfFlight;
 
+    @FindBy(xpath = ".//div[@class='fare-accordion']//div[contains(text(),'Connect')]")
+    List<WebElement> numbersOfConnectingFlight;
+
     @FindBy(xpath="//p[contains(text(),'Departing flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div")
     List<WebElement> departingFlights;
 
@@ -33,6 +36,9 @@ public class FlightCatalogue extends abstractComponent {
 
     @FindBy(xpath = "(//h3[contains(text(),'Saver')])[1]/parent::div/parent::div/parent::div//span[contains(text(),'Book')]")
     WebElement bookButton;
+
+    @FindBy(xpath = "(.//div[@class='fare-accordion']//div[contains(text(),'Connect')])[1]/parent::div/parent::div/following-sibling::div/div[2]//h3[contains(text(),'Saver')]/parent::div/parent::div/following-sibling::button")
+    WebElement connectingFlightBookButton;
 
     @FindBy(xpath = "(//h3[contains(text(),'Flexi')])[1]/parent::div/parent::div/parent::div//span[contains(text(),'Book')]")
     WebElement flexiBookButton;
@@ -96,6 +102,9 @@ public class FlightCatalogue extends abstractComponent {
     @FindBy(xpath = "//li[@data-value='VAXI']//span[contains(text(),'Vaccinated')]")
     WebElement vacinated;
 
+    @FindBy(xpath = "//span[contains(text(),'Show more flights')]")
+    WebElement showMoreFlightsBtn;
+
     public void selectFlight(){
         try {
             Thread.sleep(5000);
@@ -109,7 +118,7 @@ public class FlightCatalogue extends abstractComponent {
         else {
             numbersOfFlight.get(0).click();
         }
-        waitForWebElementToAppear(bookButton);
+        waitForWebElementToClickable(bookButton);
         bookButton.click();
     }
 
@@ -126,7 +135,7 @@ public class FlightCatalogue extends abstractComponent {
         else {
             numbersOfFlight.get(0).click();
         }
-        waitForWebElementToAppear(flexiBookButton);
+        waitForWebElementToClickable(flexiBookButton);
         flexiBookButton.click();
     }
 
@@ -143,8 +152,39 @@ public class FlightCatalogue extends abstractComponent {
         else {
             numbersOfFlight.get(0).click();
         }
-        waitForWebElementToAppear(superBookButton);
+        waitForWebElementToClickable(superBookButton);
         superBookButton.click();
+    }
+
+    public void selectConnectingFlight(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", showMoreFlightsBtn);
+        js.executeScript("arguments[0].click();", showMoreFlightsBtn);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(numbersOfConnectingFlight.size()==0){
+            Assert.assertTrue(false);
+
+        }
+        else {
+            js.executeScript("arguments[0].scrollIntoView();", numbersOfConnectingFlight.get(0));
+            js.executeScript("arguments[0].click();", numbersOfConnectingFlight.get(0));
+        }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(connectingFlightBookButton);
+        connectingFlightBookButton.click();
     }
 
     public void seleceBothFlight(){
