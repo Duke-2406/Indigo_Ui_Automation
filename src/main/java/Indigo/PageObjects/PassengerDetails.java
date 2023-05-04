@@ -64,8 +64,29 @@ public class PassengerDetails extends abstractComponent {
     @FindBy(xpath = "//h3[contains(text(),'6E Tiffin (Snack and Beverage *')]/parent::div/div[contains(@class,'footer')]//span[contains(text(),'Continue')]")
     WebElement continueMealBtn;
 
+    @FindBy(xpath = "//h3[contains(text(),'6E Tiffin (Snack and Beverage *')]/parent::div/div[contains(@class,'footer')]//span[contains(text(),'Done')]")
+    WebElement doneMealBtn;
+
     @FindBy(xpath = "//span[contains(text(),'Okay')]")
     WebElement okayBtn;
+
+    @FindBy(xpath = "//h4[contains(text(),'6E Tiffin')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/button")
+    WebElement addMealBtn;
+
+    @FindBy(xpath = "//h4[contains(text(),'6E Prime')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/button")
+    WebElement addPrimeBtn;
+    @FindBy(xpath = "//div[contains(text(),'Salted Cashew Nuts')]/following-sibling::div//button[contains(text(),'Add')]")
+    WebElement addNuts;
+
+    @FindBy(xpath = "//h3[contains(text(),'6E Prime')]/following-sibling::div//span[contains(text(),'Add')]/parent::button")
+    WebElement addPrimeAmountBtn;
+
+    @FindBy(xpath = "//h3[contains(text(),'6E Prime')]/following-sibling::div//span[contains(text(),'Select Meal')]")
+    WebElement addSelectMealBtn;
+
+    @FindBy(xpath = "//h3[contains(text(),'6E Prime')]/following-sibling::div//span[contains(text(),'Done')]")
+    WebElement donePrimeBtn;
+
 
     public void fillPassengerDetails(){
         try {
@@ -81,6 +102,70 @@ public class PassengerDetails extends abstractComponent {
         lastName.sendKeys("User");
         waitForWebElementToClickable(continueBtn);
         continueBtn.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
+        js.executeScript("arguments[0].click();", continueSeatBtn);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(notInterestedBtn);
+        notInterestedBtn.click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void fillPassengerDetailsSingleMeal(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(radioBtn);
+        radioBtn.click();
+        waitForWebElementToClickable(firstName);
+        firstName.sendKeys("Test");
+        waitForWebElementToClickable(lastName);
+        lastName.sendKeys("User");
+        waitForWebElementToClickable(continueBtn);
+        continueBtn.click();
+        addSingleTiffinMeal();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
+        js.executeScript("arguments[0].click();", continueSeatBtn);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(notInterestedBtn);
+        notInterestedBtn.click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void fillPassengerDetailsDoubleMeal(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(radioBtn);
+        radioBtn.click();
+        waitForWebElementToClickable(firstName);
+        firstName.sendKeys("Test");
+        waitForWebElementToClickable(lastName);
+        lastName.sendKeys("User");
+        waitForWebElementToClickable(continueBtn);
+        continueBtn.click();
+        addDoubleTiffinMeal();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
         js.executeScript("arguments[0].click();", continueSeatBtn);
@@ -161,6 +246,38 @@ public class PassengerDetails extends abstractComponent {
             throw new RuntimeException(e);
         }
     }
+
+    public void fillPassengerDetailsWithPrime(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(radioBtn);
+        radioBtn.click();
+        waitForWebElementToClickable(firstName);
+        firstName.sendKeys("Test");
+        waitForWebElementToClickable(lastName);
+        lastName.sendKeys("User");
+        waitForWebElementToClickable(continueBtn);
+        continueBtn.click();
+        addPrime();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
+        js.executeScript("arguments[0].click();", continueSeatBtn);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(notInterestedBtn);
+        notInterestedBtn.click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void addMeal(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", selectMealType);
@@ -177,6 +294,39 @@ public class PassengerDetails extends abstractComponent {
         js.executeScript("arguments[0].scrollIntoView();", addMeal);
         js.executeScript("arguments[0].click();", addMeal);
         js.executeScript("arguments[0].click();", continueMealBtn);
+    }
+
+    public void addSingleTiffinMeal(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", addMealBtn);
+        js.executeScript("arguments[0].click();", addMealBtn);
+        js.executeScript("arguments[0].scrollIntoView();", addMeal);
+        js.executeScript("arguments[0].click();", addMeal);
+        js.executeScript("arguments[0].click();", continueMealBtn);
+    }
+
+    public void addDoubleTiffinMeal(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", addMealBtn);
+        js.executeScript("arguments[0].click();", addMealBtn);
+        js.executeScript("arguments[0].scrollIntoView();", addMeal);
+        js.executeScript("arguments[0].click();", addMeal);
+        js.executeScript("arguments[0].click();", addNuts);
+        js.executeScript("arguments[0].click();", continueMealBtn);
+    }
+
+    public void addPrime(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", addPrimeBtn);
+        js.executeScript("arguments[0].click();", addPrimeBtn);
+        js.executeScript("arguments[0].scrollIntoView();", addPrimeAmountBtn);
+        js.executeScript("arguments[0].click();", addPrimeAmountBtn);
+        js.executeScript("arguments[0].scrollIntoView();", addSelectMealBtn);
+        js.executeScript("arguments[0].click();", addSelectMealBtn);
+        js.executeScript("arguments[0].click();", addMeal);
+        js.executeScript("arguments[0].click();", doneMealBtn);
+        js.executeScript("arguments[0].click();", donePrimeBtn);
+
     }
 
     public void informationPopUp(){

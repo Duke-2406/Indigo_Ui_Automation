@@ -23,6 +23,9 @@ public class ConfirmationPage extends abstractComponent {
     @FindBy(xpath = "//span[contains(text(),'Skip')]")
     WebElement skipBtn;
 
+    @FindBy(xpath = "//h5[contains(text(),'Connecting Flight')]/following-sibling::div[1]/div[2]")
+    WebElement selectSecondSector;
+
     @FindBy(xpath = "//span[@class='RecordLocator']")
     WebElement confirmationNumber;
 
@@ -81,6 +84,76 @@ public class ConfirmationPage extends abstractComponent {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         String[] row = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","26","27","28","29","30"};
         String[] col = {"A","B","C","D","E","F"};
+        for(String r : row){
+            int j = 0;
+            for(String c : col){
+                j=0;
+                System.out.println(r);
+                String str = r + c;
+                System.out.println(str);
+                if(getDynamicSeat(str).size() == 1) {
+                    System.out.println("you can click on seat");
+                    WebElement element = getDynamicSeat(str).get(0);
+                    js.executeScript("arguments[0].scrollIntoView();", element);
+                    js.executeScript("arguments[0].click();", element);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    okBtn.click();
+                    j=1;
+                    break;
+                }
+            }
+            if(j==1){break;}
+        }
+        js.executeScript("arguments[0].scrollIntoView();", continueToPayment);
+//        js.executeScript("arguments[0].click();", continueToPayment);
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        String title = driver.getTitle();
+//        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
+    }
+
+    public void seatSelectBothSector(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String[] row = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","26","27","28","29","30"};
+        String[] col = {"A","B","C","D","E","F"};
+        for(String r : row){
+            int j = 0;
+            for(String c : col){
+                j=0;
+                System.out.println(r);
+                String str = r + c;
+                System.out.println(str);
+                if(getDynamicSeat(str).size() == 1) {
+                    System.out.println("you can click on seat");
+                    WebElement element = getDynamicSeat(str).get(0);
+                    js.executeScript("arguments[0].scrollIntoView();", element);
+                    js.executeScript("arguments[0].click();", element);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    okBtn.click();
+                    j=1;
+                    break;
+                }
+            }
+            if(j==1){break;}
+        }
+        waitForWebElementToClickable(selectSecondSector);
+        selectSecondSector.click();
         for(String r : row){
             int j = 0;
             for(String c : col){
