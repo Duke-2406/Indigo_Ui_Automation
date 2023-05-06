@@ -1,0 +1,5 @@
+Indigo\PageObjects\ConfirmationPage.class
+Indigo\PageObjects\FlightCatalogue.class
+Indigo\PageObjects\PassengerDetails.class
+Indigo\PageObjects\LandingPage.class
+Indigo\AbstractComponents\abstractComponent.class

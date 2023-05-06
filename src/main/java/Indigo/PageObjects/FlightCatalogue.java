@@ -48,8 +48,20 @@ public class FlightCatalogue extends abstractComponent {
     @FindBy(xpath = "(//p[contains(text(),'Departing flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div)[1]//h3[contains(text(),'Saver')]/parent::div/parent::div/following-sibling::button//span[contains(text(),'Book')]")
     WebElement departingFlightBookButton;
 
+    @FindBy(xpath = "(//p[contains(text(),'Departing flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div)[1]//h3[contains(text(),'Flexi')]/parent::div/parent::div/following-sibling::button//span[contains(text(),'Book')]")
+    WebElement departingFlexiFlightBookButton;
+
+    @FindBy(xpath = "(//p[contains(text(),'Departing flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div)[1]//h3[contains(text(),'Super')]/parent::div/parent::div/following-sibling::button//span[contains(text(),'Book')]")
+    WebElement departingSuperFlightBookButton;
+
     @FindBy(xpath = "(//p[contains(text(),'Returning flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div)[1]//h3[contains(text(),'Saver')]/parent::div/parent::div/following-sibling::button//span[contains(text(),'Book')]")
     WebElement returningFlightBookButton;
+
+    @FindBy(xpath = "(//p[contains(text(),'Returning flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div)[1]//h3[contains(text(),'Flexi')]/parent::div/parent::div/following-sibling::button//span[contains(text(),'Book')]")
+    WebElement returningFlexiFlightBookButton;
+
+    @FindBy(xpath = "(//p[contains(text(),'Returning flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div)[1]//h3[contains(text(),'Super')]/parent::div/parent::div/following-sibling::button//span[contains(text(),'Book')]")
+    WebElement returningSuperFlightBookButton;
 
     @FindBy(xpath = "//span[contains(text(),'Continue')]")
     WebElement continueBtn;
@@ -187,7 +199,7 @@ public class FlightCatalogue extends abstractComponent {
         connectingFlightBookButton.click();
     }
 
-    public void seleceBothFlight(){
+    public void selectBothFlight(){
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -217,6 +229,82 @@ public class FlightCatalogue extends abstractComponent {
         waitForWebElementToAppear(returningFlightBookButton);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", returningFlightBookButton);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        continueBtn.click();
+    }
+
+    public void selectBothFlexiFlight(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(departingFlights.size()==0){
+            Assert.assertTrue(false);
+
+        }
+        else {
+            departingFlights.get(0).click();
+        }
+        waitForWebElementToAppear(departingFlexiFlightBookButton);
+        departingFlexiFlightBookButton.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(returningFlights.size()==0){
+            Assert.assertTrue(false);
+
+        }
+        else {
+            returningFlights.get(0).click();
+        }
+        waitForWebElementToAppear(returningFlexiFlightBookButton);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", returningFlexiFlightBookButton);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        continueBtn.click();
+    }
+
+    public void selectBothSuperFlight(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(departingFlights.size()==0){
+            Assert.assertTrue(false);
+
+        }
+        else {
+            departingFlights.get(0).click();
+        }
+        waitForWebElementToAppear(departingSuperFlightBookButton);
+        departingSuperFlightBookButton.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(returningFlights.size()==0){
+            Assert.assertTrue(false);
+
+        }
+        else {
+            returningFlights.get(0).click();
+        }
+        waitForWebElementToAppear(returningSuperFlightBookButton);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", returningSuperFlightBookButton);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -286,6 +374,7 @@ public class FlightCatalogue extends abstractComponent {
     }
 
     public void selectSeniorCitizen(){
+        waitForWebElementToAppear(passengerDropdown);
         waitForWebElementToClickable(passengerDropdown);
         passengerDropdown.click();
         waitForWebElementToClickable(seniorCitizen);
@@ -297,6 +386,7 @@ public class FlightCatalogue extends abstractComponent {
     }
 
     public void selectMultiplePassenger(){
+        waitForWebElementToAppear(passengerDropdown);
         waitForWebElementToClickable(passengerDropdown);
         passengerDropdown.click();
         waitForWebElementToClickable(multiplePassenger);

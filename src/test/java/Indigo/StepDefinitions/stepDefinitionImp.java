@@ -80,8 +80,27 @@ public class stepDefinitionImp extends BaseTest {
 
     @Then("I select My Flight for Round Trip")
     public void i_select_my_flight_for_round_trip(){
-        flightCatalogue.seleceBothFlight();
+        flightCatalogue.selectBothFlight();
         flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flexi Flight for Round Trip")
+    public void i_select_my_flexi_flight_for_round_trip(){
+        flightCatalogue.selectBothFlexiFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailIDFlexi();
+    }
+
+    @Then("I select My Super Flight for Round Trip")
+    public void i_select_my_super_flight_for_round_trip(){
+        flightCatalogue.selectBothSuperFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailIDFlexi();
+    }
+
+
+    @Then("I select My Flight for Inbound Round Trip")
+    public void i_select_my_flight_for_inbound_round_trip(){
+        flightCatalogue.selectBothFlight();
+        flightCatalogue.inboundPopupForPhoneNumberAndEmailID();
     }
 
     @Then("I select My Flight with infant child")
@@ -102,6 +121,27 @@ public class stepDefinitionImp extends BaseTest {
     public void i_select_my_flight_with_multiple_passenger(){
         flightCatalogue.selectMultiplePassenger();
         flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight with infant child for round trip")
+    public void i_select_my_flight_with_infant_child_for_round_trip(){
+        flightCatalogue.selectInfant();
+        flightCatalogue.selectBothFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight with senior citizen for round trip")
+    public void i_select_my_flight_with_senior_citizen_for_round_trip(){
+        flightCatalogue.selectSeniorCitizen();
+        flightCatalogue.selectBothFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight with multiple passenger for round trip")
+    public void i_select_my_flight_with_multiple_passenger_for_round_trip(){
+        flightCatalogue.selectMultiplePassenger();
+        flightCatalogue.selectBothFlight();
         flightCatalogue.popupForPhoneNumberAndEmailID();
     }
 
@@ -140,6 +180,41 @@ public class stepDefinitionImp extends BaseTest {
         flightCatalogue.popupForPhoneNumberAndEmailID();
     }
 
+    @Then("I select My Flight for Student for Round Trip")
+    public void i_select_my_flight_for_student_round_trip(){
+        flightCatalogue.selectStudent();
+        flightCatalogue.selectBothFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for Doctor and Nurse for Round Trip")
+    public void i_select_my_flight_for_doctor_nurse_round_trip(){
+        flightCatalogue.selectDoctorAndNurse();
+        flightCatalogue.selectBothFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for Armed Forces for Round Trip")
+    public void i_select_my_flight_for_armed_forces_round_trip(){
+        flightCatalogue.selectArmedForces();
+        flightCatalogue.selectBothFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for Family and Friends for Round Trip")
+    public void i_select_my_flight_for_family_friends_round_trip(){
+        flightCatalogue.selectFamilyFriends();
+        flightCatalogue.selectBothFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
+    @Then("I select My Flight for Vacinated for Round Trip")
+    public void i_select_my_flight_for_vacinated_round_trip(){
+        flightCatalogue.selectVacinated();
+        flightCatalogue.selectBothFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
     @Then("I fill passenger details")
     public void i_fill_passenger_details(){
         passengerDetails.fillPassengerDetails();
@@ -168,15 +243,32 @@ public class stepDefinitionImp extends BaseTest {
         passengerDetails.informationPopUp();
     }
 
+    @Then("I fill passenger details for flexi for Round Trip")
+    public void i_fill_passenger_details_for_flexi_for_Round_Trip(){
+        passengerDetails.fillFlexiPassengerDetailsRoundTrip();
+        passengerDetails.informationPopUp();
+    }
+
     @Then("I fill passenger details for Super")
     public void i_fill_passenger_details_for_super(){
         passengerDetails.fillSuperPassengerDetails();
         passengerDetails.informationPopUp();
     }
 
+    @Then("I fill passenger details for Super for Round Trip")
+    public void i_fill_passenger_details_for_super_for_Round_Trip(){
+        passengerDetails.fillSuperPassengerDetailsRoundTrip();
+        passengerDetails.informationPopUp();
+    }
+
     @Then("I fill passenger details for Inbound")
     public void i_fill_passenger_details_for_inbound(){
         passengerDetails.inboundFillPassengerDetails();
+    }
+
+    @Then("I fill passenger details for Inbound Round Trip")
+    public void i_fill_passenger_details_for_inbound_round_trip(){
+        passengerDetails.inboundRoundTripFillPassengerDetails();
     }
 
     @Then("I fill passenger details for Outbound")

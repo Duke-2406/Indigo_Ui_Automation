@@ -87,6 +87,8 @@ public class PassengerDetails extends abstractComponent {
     @FindBy(xpath = "//h3[contains(text(),'6E Prime')]/following-sibling::div//span[contains(text(),'Done')]")
     WebElement donePrimeBtn;
 
+    @FindBy(xpath = "//h3[contains(text(),'6E ADD-ONS')]/following-sibling::div/div[@class='topup-container']/div/li[2]")
+    WebElement selectSecondTrip;
 
     public void fillPassengerDetails(){
         try {
@@ -215,6 +217,41 @@ public class PassengerDetails extends abstractComponent {
         }
     }
 
+    public void fillFlexiPassengerDetailsRoundTrip() {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(radioBtn);
+        radioBtn.click();
+        waitForWebElementToClickable(firstName);
+        firstName.sendKeys("Test");
+        waitForWebElementToClickable(lastName);
+        lastName.sendKeys("User");
+        waitForWebElementToClickable(continueBtn);
+        continueBtn.click();
+        addMeal();
+        waitForWebElementToClickable(selectSecondTrip);
+        selectSecondTrip.click();
+        addMeal();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
+        js.executeScript("arguments[0].click();", continueSeatBtn);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(notInterestedBtn);
+        notInterestedBtn.click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void fillSuperPassengerDetails(){
         try {
             Thread.sleep(10000);
@@ -229,6 +266,41 @@ public class PassengerDetails extends abstractComponent {
         lastName.sendKeys("User");
         waitForWebElementToClickable(continueBtn);
         continueBtn.click();
+        addSuperMeal();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
+        js.executeScript("arguments[0].click();", continueSeatBtn);
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        waitForWebElementToClickable(notInterestedBtn);
+//        notInterestedBtn.click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void fillSuperPassengerDetailsRoundTrip(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(radioBtn);
+        radioBtn.click();
+        waitForWebElementToClickable(firstName);
+        firstName.sendKeys("Test");
+        waitForWebElementToClickable(lastName);
+        lastName.sendKeys("User");
+        waitForWebElementToClickable(continueBtn);
+        continueBtn.click();
+        addSuperMeal();
+        waitForWebElementToClickable(selectSecondTrip);
+        selectSecondTrip.click();
         addSuperMeal();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
@@ -345,6 +417,38 @@ public class PassengerDetails extends abstractComponent {
         firstName.sendKeys("Test");
         waitForWebElementToClickable(lastName);
         lastName.sendKeys("User");
+        waitForWebElementToClickable(continueBtn);
+        continueBtn.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
+        js.executeScript("arguments[0].click();", continueSeatBtn);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void inboundRoundTripFillPassengerDetails(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(radioBtn);
+        radioBtn.click();
+        waitForWebElementToClickable(firstName);
+        firstName.sendKeys("Test");
+        waitForWebElementToClickable(lastName);
+        lastName.sendKeys("User");
+        waitForWebElementToClickable(passportNumber);
+        passportNumber.sendKeys("123456");
+        Select date = new Select(selectDate);
+        date.selectByValue("10");
+        Select month = new Select(selectMonth);
+        month.selectByValue("6");
+        Select year = new Select(selectYear);
+        year.selectByValue("2031");
         waitForWebElementToClickable(continueBtn);
         continueBtn.click();
         JavascriptExecutor js = (JavascriptExecutor) driver;
