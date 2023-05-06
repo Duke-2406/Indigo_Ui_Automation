@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-05-06T22:42:48 IST" name="Admin Users" finished-at="2023-05-06T22:45:08 IST" duration-ms="140177">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:Cucumber.TestNGTestRunner@5afa3c9]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2023-05-06T22:42:48 IST" name="Sanity" finished-at="2023-05-06T22:45:08 IST" duration-ms="140177">
+      <class name="Cucumber.TestNGTestRunner">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:Cucumber.TestNGTestRunner@5afa3c9]" started-at="2023-05-06T22:42:48 IST" name="setUpClass" finished-at="2023-05-06T22:42:49 IST" duration-ms="706" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:Cucumber.TestNGTestRunner@5afa3c9]" started-at="2023-05-06T22:42:49 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-05-06T22:45:08 IST" duration-ms="138957" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Book Flight Tickets for Round Trip for Vacinated (Payment not included)"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Optional[Sanity Suite]"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:Cucumber.TestNGTestRunner@5afa3c9]" started-at="2023-05-06T22:45:08 IST" name="tearDownClass" finished-at="2023-05-06T22:45:08 IST" duration-ms="463" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- Cucumber.TestNGTestRunner -->
+    </test> <!-- Sanity -->
+  </suite> <!-- Admin Users -->
+</testng-results>
