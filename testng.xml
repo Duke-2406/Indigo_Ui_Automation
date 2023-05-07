@@ -4,6 +4,7 @@
     <test name = "Sanity">
         <classes>
             <class name = "Cucumber.TestNGTestRunner"/>
+            <class name = "Indigo.Components.emailSend"/>
         </classes>
     </test>
 </suite>

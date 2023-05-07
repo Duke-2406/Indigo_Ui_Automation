@@ -27,13 +27,14 @@ public class BaseTest {
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+ "\\src\\main\\java\\Indigo\\resources\\GlobalData.properties");
         prop.load(fis);
         String browserName = prop.getProperty("browser");
+        String browserType = prop.getProperty("browsertype");
 
         if(browserName.contains("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             options.addArguments("--disable-dev-shm-usage");
-            if(browserName.contains("headless")) {
+            if(browserType.contains("headless")) {
                 options.addArguments("headless");
             }
             driver = new ChromeDriver(options);
