@@ -26,16 +26,16 @@ public class emailSend {
             Session session = Session.getDefaultInstance(props,
                     new Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("deepaksihare891@gmail.com", "abpgdenmkmbmaabg");
+                            return new PasswordAuthentication("qa3.budget.outbound.us@gmail.com", "gmysfxoxrcovvyiv");
                         }
                     });
 
             try {
                 Message message = new MimeMessage(session);
                 message.setFrom(new
-                        InternetAddress("deepaksihare891@gmail.com"));
+                        InternetAddress("qa3.budget.outbound.us@gmail.com"));
                 message.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse("deepaksihare891@gmail.com"));
+                        InternetAddress.parse("qa3.budget.outbound.us@gmail.com"));
                 message.setSubject("Indigo Sanity Report");
 
                 BodyPart messageBodyPart1 = new MimeBodyPart();
