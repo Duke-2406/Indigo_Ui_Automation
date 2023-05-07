@@ -405,7 +405,7 @@ Feature: Sanity Suite
       |Pick Up Loc|Drop Off Loc|
       |Delhi(DEL) |Jaipur(JAI)|
 
-  @Sanity @TC_38 @test
+  @Sanity @TC_38
   Scenario Outline: Book Flight Tickets for Round Trip for Vacinated (Payment not included)
     Given I redirect on Home Page and search for round trip and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight for Vacinated for Round Trip
