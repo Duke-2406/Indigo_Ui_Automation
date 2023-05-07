@@ -33,7 +33,7 @@ Feature: Sanity Suite
     |Pick Up Loc|Drop Off Loc|
     |Delhi(DEL) |London Heathrow(LHR)|
 
-  @Sanity @TC_04
+  @TC_04
   Scenario Outline: Inbound Book Flight Tickets for One Way Trip with seat (Payment not included)
     Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight for Inbound
@@ -55,7 +55,7 @@ Feature: Sanity Suite
       |Pick Up Loc|Drop Off Loc|
       |London Heathrow(LHR) |Delhi(DEL)|
 
-  @Sanity @TC_06
+  @TC_06
   Scenario Outline: Outbound Book Flight Tickets for One Way Trip with seat (Payment not included)
     Given I landed on Home Page and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight for Inbound
