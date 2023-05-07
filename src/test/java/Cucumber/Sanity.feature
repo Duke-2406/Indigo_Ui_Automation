@@ -275,7 +275,7 @@ Feature: Sanity Suite
       |Pick Up Loc|Drop Off Loc|
       |Delhi(DEL) |London Heathrow(LHR)|
 
-  @Sanity @TC_26
+  @TC_26
   Scenario Outline: Inbound Book Flight Tickets for Round Trip with seat (Payment not included)
     Given I redirect on Home Page and search for round trip and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight for Inbound Round Trip
@@ -297,7 +297,7 @@ Feature: Sanity Suite
       |Pick Up Loc|Drop Off Loc|
       |London Heathrow(LHR) |Delhi(DEL)|
 
-  @Sanity @TC_28
+  @TC_28
   Scenario Outline: Outbound Book Flight Tickets for Round Trip with seat (Payment not included)
     Given I redirect on Home Page and search for round trip and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight for Inbound Round Trip
@@ -405,7 +405,7 @@ Feature: Sanity Suite
       |Pick Up Loc|Drop Off Loc|
       |Delhi(DEL) |Jaipur(JAI)|
 
-  @Sanity @TC_38
+  @Sanity @TC_38 @test
   Scenario Outline: Book Flight Tickets for Round Trip for Vacinated (Payment not included)
     Given I redirect on Home Page and search for round trip and search for <Pick Up Loc> and <Drop Off Loc>
     Then I select My Flight for Vacinated for Round Trip
