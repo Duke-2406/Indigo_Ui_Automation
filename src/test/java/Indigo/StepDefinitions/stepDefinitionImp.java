@@ -60,6 +60,12 @@ public class stepDefinitionImp extends BaseTest {
         flightCatalogue.popupForPhoneNumberAndEmailID();
     }
 
+    @Then("I select My Connecting Flight for Round Trip")
+    public void i_select_my_connecting_flight_round_trip(){
+        flightCatalogue.selectConnectingFlightForRoundTrip();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
     @Then("I select My flexi Flight")
     public void i_select_my_flexi_flight(){
         flightCatalogue.selectFlexiFlight();
@@ -180,6 +186,13 @@ public class stepDefinitionImp extends BaseTest {
         flightCatalogue.popupForPhoneNumberAndEmailID();
     }
 
+    @Then("I select My Flight for Unaccompanied Minor")
+    public void i_select_my_flight_for_unaccompanied_minor(){
+        flightCatalogue.selectUnaccompaniedMinor();
+        flightCatalogue.selectFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
     @Then("I select My Flight for Student for Round Trip")
     public void i_select_my_flight_for_student_round_trip(){
         flightCatalogue.selectStudent();
@@ -215,6 +228,13 @@ public class stepDefinitionImp extends BaseTest {
         flightCatalogue.popupForPhoneNumberAndEmailID();
     }
 
+    @Then("I select My Flight for Unaccompanied Minor for Round Trip")
+    public void i_select_my_flight_for_unaccompanied_minor_round_trip(){
+        flightCatalogue.selectUnaccompaniedMinor();
+        flightCatalogue.selectBothFlight();
+        flightCatalogue.popupForPhoneNumberAndEmailID();
+    }
+
     @Then("I fill passenger details")
     public void i_fill_passenger_details(){
         passengerDetails.fillPassengerDetails();
@@ -234,6 +254,16 @@ public class stepDefinitionImp extends BaseTest {
     public void i_fill_passenger_details_add_prime_addon(){
         passengerDetails.fillPassengerDetailsWithPrime();
         passengerDetails.informationPopUp();
+    }
+
+    @Then("I fill passenger details and add Bar addon")
+    public void i_fill_passenger_details_add_bar_addon(){
+        passengerDetails.fillPassengerDetailsWithBar();
+    }
+
+    @Then("I fill passenger details and add Bar addon for Round Trip")
+    public void i_fill_passenger_details_add_bar_addon_round_trip(){
+        passengerDetails.fillPassengerDetailsWithBarForInternational();
     }
 
 
@@ -296,9 +326,19 @@ public class stepDefinitionImp extends BaseTest {
         confirmationPage.seatSelect();
     }
 
+    @Then("I confirm my flight with seat for 1 sector for round trip")
+    public void i_confirm_my_flight_with_seat_for_one_sector_round_trip(){
+        confirmationPage.seatSelectForRoundTripFirstSector();
+    }
+
     @Then("I confirm my flight with seat for both sector")
     public void i_confirm_my_flight_with_seat_for_both_sector(){
         confirmationPage.seatSelectBothSector();
+    }
+
+    @Then("I confirm my flight with seat for both sector for round trip")
+    public void i_confirm_my_flight_with_seat_for_both_sector_round_trip(){
+        confirmationPage.seatSelectForRoundTripBothSector();
     }
 
 //    @After

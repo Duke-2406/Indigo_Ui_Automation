@@ -28,6 +28,12 @@ public class FlightCatalogue extends abstractComponent {
     @FindBy(xpath = ".//div[@class='fare-accordion']//div[contains(text(),'Connect')]")
     List<WebElement> numbersOfConnectingFlight;
 
+    @FindBy(xpath = "//p[contains(text(),'Departing flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div//div[@class='fare-accordion']//div[contains(text(),'Connect')]")
+    List<WebElement> numbersOfConnectingDepartingFlight;
+
+    @FindBy(xpath = "//p[contains(text(),'Returning flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div//div[@class='fare-accordion']//div[contains(text(),'Connect')]")
+    List<WebElement> numbersOfConnectingReturningFlight;
+
     @FindBy(xpath="//p[contains(text(),'Departing flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div")
     List<WebElement> departingFlights;
 
@@ -39,6 +45,12 @@ public class FlightCatalogue extends abstractComponent {
 
     @FindBy(xpath = "(.//div[@class='fare-accordion']//div[contains(text(),'Connect')])[1]/parent::div/parent::div/following-sibling::div/div[2]//h3[contains(text(),'Saver')]/parent::div/parent::div/following-sibling::button")
     WebElement connectingFlightBookButton;
+
+    @FindBy(xpath = "(//p[contains(text(),'Departing flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div//div[@class='fare-accordion']//div[contains(text(),'Connect')])[1]/parent::div/parent::div/following-sibling::div/div[2]//h3[contains(text(),'Saver')]/parent::div/parent::div/following-sibling::button")
+    WebElement connectingDepartingFlightBookButton;
+
+    @FindBy(xpath = "(//p[contains(text(),'Returning flight')]/parent::div/parent::div/parent::div/following-sibling::div/div/div//div[@class='fare-accordion']//div[contains(text(),'Connect')])[1]/parent::div/parent::div/following-sibling::div/div[2]//h3[contains(text(),'Saver')]/parent::div/parent::div/following-sibling::button")
+    WebElement connectingReturningFlightBookButton;
 
     @FindBy(xpath = "(//h3[contains(text(),'Flexi')])[1]/parent::div/parent::div/parent::div//span[contains(text(),'Book')]")
     WebElement flexiBookButton;
@@ -114,15 +126,20 @@ public class FlightCatalogue extends abstractComponent {
     @FindBy(xpath = "//li[@data-value='VAXI']//span[contains(text(),'Vaccinated')]")
     WebElement vacinated;
 
+    @FindBy(xpath = "//li[@data-value='UMNR']//span[contains(text(),'Unaccompanied Minor')]")
+    WebElement unaccompaniedMinor;
+
     @FindBy(xpath = "//span[contains(text(),'Show more flights')]")
     WebElement showMoreFlightsBtn;
 
+    @FindBy(xpath = "//p[contains(text(),'Departing flight')]/parent::div/parent::div/parent::div/following-sibling::div/div//span[contains(text(),'Show more flights')]")
+    WebElement showMoreFlightsBtnDepartingFlight;
+
+    @FindBy(xpath = "//p[contains(text(),'Returning flight')]/parent::div/parent::div/parent::div/following-sibling::div/div//span[contains(text(),'Show more flights')]")
+    WebElement showMoreFlightsBtnReturningFlight;
+
     public void selectFlight(){
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(5000);
         if(numbersOfFlight.size()==0){
             Assert.assertTrue(false);
 
@@ -197,6 +214,65 @@ public class FlightCatalogue extends abstractComponent {
         }
         waitForWebElementToClickable(connectingFlightBookButton);
         connectingFlightBookButton.click();
+    }
+
+    public void selectConnectingFlightForRoundTrip(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", showMoreFlightsBtnDepartingFlight);
+        js.executeScript("arguments[0].click();", showMoreFlightsBtnDepartingFlight);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(numbersOfConnectingDepartingFlight.size()==0){
+            Assert.assertTrue(false);
+
+        }
+        else {
+            js.executeScript("arguments[0].scrollIntoView();", numbersOfConnectingDepartingFlight.get(0));
+            js.executeScript("arguments[0].click();",numbersOfConnectingDepartingFlight.get(0));
+        }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(connectingDepartingFlightBookButton);
+        connectingDepartingFlightBookButton.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        js.executeScript("arguments[0].scrollIntoView();", showMoreFlightsBtnReturningFlight);
+        js.executeScript("arguments[0].click();", showMoreFlightsBtnReturningFlight);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(numbersOfConnectingReturningFlight.size()==0){
+            Assert.assertTrue(false);
+
+        }
+        else {
+            js.executeScript("arguments[0].scrollIntoView();", numbersOfConnectingReturningFlight.get(0));
+            js.executeScript("arguments[0].click();",numbersOfConnectingReturningFlight.get(0));
+        }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(connectingReturningFlightBookButton);
+        connectingReturningFlightBookButton.click();
+        continueBtn.click();
     }
 
     public void selectBothFlight(){
@@ -315,27 +391,15 @@ public class FlightCatalogue extends abstractComponent {
 
     public void popupForPhoneNumberAndEmailID(){
         waitForWebElementToClickable(skipButton);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(1000);
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", skipButton);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         waitForWebElementToClickable(mobileNumberInput);
+        hardCodedWait(1000);
         mobileNumberInput.sendKeys("1234567890");
         emailIDInput.sendKeys("test@gmail.com");
         waitForWebElementToClickable(nextBtn);
+        hardCodedWait(1000);
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", nextBtn);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void popupForPhoneNumberAndEmailIDFlexi(){
@@ -446,5 +510,15 @@ public class FlightCatalogue extends abstractComponent {
         js.executeScript("arguments[0].click();", vacinated);
         waitForWebElementToClickable(okBtn);
         okBtn.click();
+    }
+
+    public void selectUnaccompaniedMinor(){
+        waitForWebElementToClickable(specialFare);
+        specialFare.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", unaccompaniedMinor);
+        js.executeScript("arguments[0].click();", unaccompaniedMinor);
+//        waitForWebElementToClickable(okBtn);
+//        okBtn.click();
     }
 }
