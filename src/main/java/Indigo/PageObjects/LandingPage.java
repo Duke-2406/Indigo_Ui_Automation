@@ -32,53 +32,32 @@ public class LandingPage extends abstractComponent {
     WebElement searchFlightButton;
 
     public void goTo(){
-        driver.get("https://aem-prod-skyplus6e.goindigo.in/");
+        driver.get("https://aem-preprod-skyplus6e.goindigo.in/");
     }
 
     public void searchFlight(String pickUpLoc, String dropOfLoc){
         fromInput.click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(1000);
         fromInput.sendKeys(pickUpLoc);
         fromInput.click();
         fromInput.clear();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(5000);
         fromInput.click();
         fromInput.sendKeys(Keys.CONTROL,"a",Keys.DELETE);
         fromInput.sendKeys(pickUpLoc);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        waitForWebElementToClickable(toInput);
+        hardCodedWait(500);
         toInput.click();
         toInput.clear();
         toInput.sendKeys(dropOfLoc);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        waitForWebElementToClickable(dateInput);
+        hardCodedWait(500);
         dateInput.click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(1000);
         dateInput.sendKeys(Keys.CONTROL,"a",Keys.DELETE);
         dateInput.sendKeys("15 Jun 2023");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        waitForWebElementToClickable(searchFlightButton);
+        hardCodedWait(500);
         searchFlightButton.click();
     }
 

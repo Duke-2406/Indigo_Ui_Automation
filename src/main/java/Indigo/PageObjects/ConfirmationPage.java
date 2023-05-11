@@ -36,18 +36,34 @@ public class ConfirmationPage extends abstractComponent {
         return driver.findElements(By.xpath("//div[contains(@class,'open') and @data-designator='"+SystemName+"']//button"));
     }
 
+    public List<WebElement> getDynamicSeatFirstSectorFirstFlight(String SystemName){
+        return driver.findElements(By.xpath("(//div[contains(@class,'open') and @data-designator='"+SystemName+"']//button)[1]"));
+    }
+
+    public List<WebElement> getDynamicSeatFirstSectorSecondFlight(String SystemName){
+        return driver.findElements(By.xpath("(//div[contains(@class,'open') and @data-designator='"+SystemName+"']//button)[2]"));
+    }
+
+    public List<WebElement> getDynamicSeatSecondSectorFirstFlight(String SystemName){
+        return driver.findElements(By.xpath("(//div[contains(@class,'open') and @data-designator='"+SystemName+"']//button)[3]"));
+    }
+
+    public List<WebElement> getDynamicSeatSecondSectorSecondFlight(String SystemName){
+        return driver.findElements(By.xpath("(//div[contains(@class,'open') and @data-designator='"+SystemName+"']//button)[4]"));
+    }
+
     @FindBy(xpath = ".//span[contains(text(),'OK')]")
     WebElement okBtn;
 
     @FindBy(xpath = ".//span[contains(text(),'Continue to Payment')]")
     WebElement continueToPayment;
 
+    @FindBy(xpath = "//h3[contains(text(),'Select Seat')]/parent::div/div[contains(@class,'seat-select__sector')]/button[2]")
+    WebElement seatSelectForReturnJourney;
+
     public void confirmPage(){
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        waitForWebElementToClickable(skipBtn);
+        hardCodedWait(1000);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", skipBtn);
         js.executeScript("arguments[0].click();", skipBtn);
@@ -76,11 +92,7 @@ public class ConfirmationPage extends abstractComponent {
     }
 
     public void seatSelect(){
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(5000);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         String[] row = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","26","27","28","29","30"};
         String[] col = {"A","B","C","D","E","F"};
@@ -96,11 +108,8 @@ public class ConfirmationPage extends abstractComponent {
                     WebElement element = getDynamicSeat(str).get(0);
                     js.executeScript("arguments[0].scrollIntoView();", element);
                     js.executeScript("arguments[0].click();", element);
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                    waitForWebElementToClickable(okBtn);
+                    hardCodedWait(1000);
                     okBtn.click();
                     j=1;
                     break;
@@ -109,14 +118,6 @@ public class ConfirmationPage extends abstractComponent {
             if(j==1){break;}
         }
         js.executeScript("arguments[0].scrollIntoView();", continueToPayment);
-//        js.executeScript("arguments[0].click();", continueToPayment);
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//        String title = driver.getTitle();
-//        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
     }
 
     public void seatSelectBothSector(){
@@ -232,4 +233,193 @@ public class ConfirmationPage extends abstractComponent {
 //        String title = driver.getTitle();
 //        Assert.assertEquals(title, "Book flights Online for Domestic and International - IndiGo");
     }
+
+    public void seatSelectForRoundTripFirstSector(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String[] row = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","26","27","28","29","30"};
+        String[] col = {"A","B","C","D","E","F"};
+        for(String r : row){
+            int j = 0;
+            for(String c : col){
+                j=0;
+                System.out.println(r);
+                String str = r + c;
+                System.out.println(str);
+                if(getDynamicSeatFirstSectorFirstFlight(str).size() == 1) {
+                    System.out.println("you can click on seat");
+                    WebElement element = getDynamicSeatFirstSectorFirstFlight(str).get(0);
+                    js.executeScript("arguments[0].scrollIntoView();", element);
+                    js.executeScript("arguments[0].click();", element);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    okBtn.click();
+                    j=1;
+                    break;
+                }
+            }
+            if(j==1){break;}
+        }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        js.executeScript("arguments[0].scrollIntoView();", seatSelectForReturnJourney);
+        js.executeScript("arguments[0].click();", seatSelectForReturnJourney);
+        for(String r : row){
+            int j = 0;
+            for(String c : col){
+                j=0;
+                System.out.println(r);
+                String str = r + c;
+                System.out.println(str);
+                if(getDynamicSeatSecondSectorFirstFlight(str).size() == 1) {
+                    System.out.println("you can click on seat");
+                    WebElement element = getDynamicSeatSecondSectorFirstFlight(str).get(0);
+                    js.executeScript("arguments[0].scrollIntoView();", element);
+                    js.executeScript("arguments[0].click();", element);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    okBtn.click();
+                    j=1;
+                    break;
+                }
+            }
+            if(j==1){break;}
+        }
+        js.executeScript("arguments[0].scrollIntoView();", continueToPayment);
+        js.executeScript("arguments[0].click();", continueToPayment);
+    }
+
+    public void seatSelectForRoundTripBothSector(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String[] row = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","26","27","28","29","30"};
+        String[] col = {"A","B","C","D","E","F"};
+        for(String r : row){
+            int j = 0;
+            for(String c : col){
+                j=0;
+                System.out.println(r);
+                String str = r + c;
+                System.out.println(str);
+                if(getDynamicSeatFirstSectorFirstFlight(str).size() == 1) {
+                    System.out.println("you can click on seat");
+                    WebElement element = getDynamicSeatFirstSectorFirstFlight(str).get(0);
+                    js.executeScript("arguments[0].scrollIntoView();", element);
+                    js.executeScript("arguments[0].click();", element);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    okBtn.click();
+                    j=1;
+                    break;
+                }
+            }
+            if(j==1){break;}
+        }
+        waitForWebElementToClickable(selectSecondSector);
+        selectSecondSector.click();
+        for(String r : row){
+            int j = 0;
+            for(String c : col){
+                j=0;
+                System.out.println(r);
+                String str = r + c;
+                System.out.println(str);
+                if(getDynamicSeatFirstSectorSecondFlight(str).size() == 1) {
+                    System.out.println("you can click on seat");
+                    WebElement element = getDynamicSeatFirstSectorSecondFlight(str).get(0);
+                    js.executeScript("arguments[0].scrollIntoView();", element);
+                    js.executeScript("arguments[0].click();", element);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    okBtn.click();
+                    j=1;
+                    break;
+                }
+            }
+            if(j==1){break;}
+        }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        js.executeScript("arguments[0].scrollIntoView();", seatSelectForReturnJourney);
+        js.executeScript("arguments[0].click();", seatSelectForReturnJourney);
+        for(String r : row){
+            int j = 0;
+            for(String c : col){
+                j=0;
+                System.out.println(r);
+                String str = r + c;
+                System.out.println(str);
+                if(getDynamicSeatSecondSectorFirstFlight(str).size() == 1) {
+                    System.out.println("you can click on seat");
+                    WebElement element = getDynamicSeatSecondSectorFirstFlight(str).get(0);
+                    js.executeScript("arguments[0].scrollIntoView();", element);
+                    js.executeScript("arguments[0].click();", element);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    okBtn.click();
+                    j=1;
+                    break;
+                }
+            }
+            if(j==1){break;}
+        }
+        waitForWebElementToClickable(selectSecondSector);
+        selectSecondSector.click();
+        for(String r : row){
+            int j = 0;
+            for(String c : col){
+                j=0;
+                System.out.println(r);
+                String str = r + c;
+                System.out.println(str);
+                if(getDynamicSeatSecondSectorSecondFlight(str).size() == 1) {
+                    System.out.println("you can click on seat");
+                    WebElement element = getDynamicSeatSecondSectorSecondFlight(str).get(0);
+                    js.executeScript("arguments[0].scrollIntoView();", element);
+                    js.executeScript("arguments[0].click();", element);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    okBtn.click();
+                    j=1;
+                    break;
+                }
+            }
+            if(j==1){break;}
+        }
+        js.executeScript("arguments[0].scrollIntoView();", continueToPayment);
+        js.executeScript("arguments[0].click();", continueToPayment);
+    }
+
 }

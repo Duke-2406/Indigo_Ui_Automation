@@ -75,6 +75,13 @@ public class PassengerDetails extends abstractComponent {
 
     @FindBy(xpath = "//h4[contains(text(),'6E Prime')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/button")
     WebElement addPrimeBtn;
+
+    @FindBy(xpath = "//h4[contains(text(),'6E Bar')]/parent::div/parent::div/parent::div/following-sibling::div/div/div/button")
+    WebElement addBarBtn;
+
+    @FindBy(xpath = "//span[contains(text(),'Beer')]/parent::label/preceding-sibling::input")
+    WebElement selectBeer;
+
     @FindBy(xpath = "//div[contains(text(),'Salted Cashew Nuts')]/following-sibling::div//button[contains(text(),'Add')]")
     WebElement addNuts;
 
@@ -87,16 +94,15 @@ public class PassengerDetails extends abstractComponent {
     @FindBy(xpath = "//h3[contains(text(),'6E Prime')]/following-sibling::div//span[contains(text(),'Done')]")
     WebElement donePrimeBtn;
 
+    @FindBy(xpath = "//h3[contains(text(),'6E Bar')]/following-sibling::div//span[contains(text(),'Done')]")
+    WebElement doneBarBtn;
+
     @FindBy(xpath = "//h3[contains(text(),'6E ADD-ONS')]/following-sibling::div/div[@class='topup-container']/div/li[2]")
     WebElement selectSecondTrip;
 
     public void fillPassengerDetails(){
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         waitForWebElementToClickable(radioBtn);
+        hardCodedWait(1000);
         radioBtn.click();
         waitForWebElementToClickable(firstName);
         firstName.sendKeys("Test");
@@ -107,18 +113,9 @@ public class PassengerDetails extends abstractComponent {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
         js.executeScript("arguments[0].click();", continueSeatBtn);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(1000);
         waitForWebElementToClickable(notInterestedBtn);
         notInterestedBtn.click();
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void fillPassengerDetailsSingleMeal(){
@@ -139,11 +136,7 @@ public class PassengerDetails extends abstractComponent {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
         js.executeScript("arguments[0].click();", continueSeatBtn);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(1000);
         waitForWebElementToClickable(notInterestedBtn);
         notInterestedBtn.click();
         try {
@@ -171,11 +164,7 @@ public class PassengerDetails extends abstractComponent {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
         js.executeScript("arguments[0].click();", continueSeatBtn);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(1000);
         waitForWebElementToClickable(notInterestedBtn);
         notInterestedBtn.click();
         try {
@@ -203,11 +192,7 @@ public class PassengerDetails extends abstractComponent {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
         js.executeScript("arguments[0].click();", continueSeatBtn);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(1000);
         waitForWebElementToClickable(notInterestedBtn);
         notInterestedBtn.click();
         try {
@@ -238,11 +223,7 @@ public class PassengerDetails extends abstractComponent {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
         js.executeScript("arguments[0].click();", continueSeatBtn);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(1000);
         waitForWebElementToClickable(notInterestedBtn);
         notInterestedBtn.click();
         try {
@@ -337,11 +318,7 @@ public class PassengerDetails extends abstractComponent {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
         js.executeScript("arguments[0].click();", continueSeatBtn);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hardCodedWait(1000);
         waitForWebElementToClickable(notInterestedBtn);
         notInterestedBtn.click();
         try {
@@ -350,6 +327,71 @@ public class PassengerDetails extends abstractComponent {
             throw new RuntimeException(e);
         }
     }
+
+    public void fillPassengerDetailsWithBar(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(radioBtn);
+        radioBtn.click();
+        waitForWebElementToClickable(firstName);
+        firstName.sendKeys("Test");
+        waitForWebElementToClickable(lastName);
+        lastName.sendKeys("User");
+        waitForWebElementToClickable(continueBtn);
+        continueBtn.click();
+        addBar();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
+        js.executeScript("arguments[0].click();", continueSeatBtn);
+        waitForWebElementToClickable(notInterestedBtn);
+        hardCodedWait(1000);
+        notInterestedBtn.click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void fillPassengerDetailsWithBarForInternational(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        waitForWebElementToClickable(radioBtn);
+        radioBtn.click();
+        waitForWebElementToClickable(firstName);
+        firstName.sendKeys("Test");
+        waitForWebElementToClickable(lastName);
+        lastName.sendKeys("User");
+        waitForWebElementToClickable(passportNumber);
+        passportNumber.sendKeys("123456");
+        Select date = new Select(selectDate);
+        date.selectByValue("10");
+        Select month = new Select(selectMonth);
+        month.selectByValue("6");
+        Select year = new Select(selectYear);
+        year.selectByValue("2031");
+        waitForWebElementToClickable(continueBtn);
+        continueBtn.click();
+        addBar();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", continueSeatBtn);
+        js.executeScript("arguments[0].click();", continueSeatBtn);
+        waitForWebElementToClickable(notInterestedBtn);
+        hardCodedWait(1000);
+        notInterestedBtn.click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void addMeal(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", selectMealType);
@@ -398,7 +440,15 @@ public class PassengerDetails extends abstractComponent {
         js.executeScript("arguments[0].click();", addMeal);
         js.executeScript("arguments[0].click();", doneMealBtn);
         js.executeScript("arguments[0].click();", donePrimeBtn);
+    }
 
+    public void addBar(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", addBarBtn);
+        js.executeScript("arguments[0].click();", addBarBtn);
+        js.executeScript("arguments[0].scrollIntoView();", selectBeer);
+        js.executeScript("arguments[0].click();", selectBeer);
+        js.executeScript("arguments[0].click();", doneBarBtn);
     }
 
     public void informationPopUp(){
